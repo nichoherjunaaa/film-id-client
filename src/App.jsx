@@ -2,24 +2,14 @@ import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import {getMovie} from './api.js';
 
 function App() {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
-    const getFilm = async () => {
-      try {
-        const response = await fetch("https://api-lk21.herokuapp.com/api/v1/latest");
-        const data = await response.json();
-        console.log(data);
-        setFilms(data.result); // Simpan data ke state jika diperlukan
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    getFilm();
-  }, []);
+    getMovie()
+  }, [])
 
   const [count, setCount] = useState(0);
 
