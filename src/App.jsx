@@ -1,51 +1,54 @@
 import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import './App.css';
-import {getMovie} from './api.js';
+import { getMovie } from './utils/api.js';
 
 function App() {
   const [films, setFilms] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchMovie = async () => {
+    try {
+      const response = await getMovie();
+      // console.log(response.data.results);
+      setFilms(response.data.results);
+      if (response && response.data && response.data.results) {
+        setFilms(response.data.results);        
+      } else {
+        console.error('Unexpected response structure:', response);
+      }
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    getMovie()
-  }, [])
+    fetchMovie();    
+  }, []);
 
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>Edit <code>src/App.jsx</code> and save to test HMR</p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-
-      <h2>Film Terbaru</h2>
-      <ul>
-        {films.length > 0 ? (
-          films.map((film, index) => (
-            <li key={index}>{film.title}</li>
-          ))
+      {
+        films.length > 0 ? (
+          <div>
+            <h1>Top Films</h1>
+            <ul>
+              {films.map((film) => (
+                <li key={film.id}>{film.title}</li>
+              ))}
+            </ul>
+          </div>
         ) : (
           <p>Loading...</p>
-        )}
-      </ul>
+        )
+      }
     </>
   );
 }
 
 export default App;
+
