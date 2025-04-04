@@ -1,5 +1,5 @@
 import React from 'react'
-import { getMovie } from '../utils/api.js';
+import { getMovie } from '../api/api.js';
 import { useState, useEffect } from 'react';
 import Card from './../components/Card';
 
@@ -34,7 +34,7 @@ const Movies = () => {
                     <div>Loading...</div>
                 ) : movies && movies.length > 0 ? (
                     <>
-                    <div className="grid grid-cols-5 justify-center">
+                    <div className="grid grid-cols-4 justify-center">
                         <Card movies={movies} />
                     </div>
                     </>
