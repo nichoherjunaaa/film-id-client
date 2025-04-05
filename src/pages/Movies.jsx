@@ -34,7 +34,7 @@ const Movies = () => {
                     <div>Loading...</div>
                 ) : movies && movies.length > 0 ? (
                     <>
-                    <div className="grid grid-cols-4 justify-center">
+                    <div className="grid grid-cols-4 justify-center gap-5">
                         <Card movies={movies} />
                     </div>
                     </>
