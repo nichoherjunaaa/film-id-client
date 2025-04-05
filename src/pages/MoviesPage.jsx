@@ -1,9 +1,9 @@
 import React from 'react'
 import { getMovie } from '../api/api.js';
 import { useState, useEffect } from 'react';
-import Card from './../components/Card';
+import Card from '../components/Card.jsx';
 
-const Movies = () => {
+const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -49,4 +49,4 @@ const Movies = () => {
     )
 }
 
-export default Movies
+export default MoviesPage

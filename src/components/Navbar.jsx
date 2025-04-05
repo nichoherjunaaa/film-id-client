@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Navbar = () => {
     const list = {
         items: ['Home', 'Movies', 'TV Shows', 'About', 'Information']
@@ -13,15 +14,17 @@ const Navbar = () => {
                     </li>
                 ))}
             </ul>
-            <ul className="flex">
+            <ul className="flex items-center">
                 <li className="mx-3">
-                    <a href="">Cart</a>
+                    <Link to="/cart" className="text-2xl">
+                        <FaShoppingCart />
+                    </Link>
                 </li>
                 <li className="mx-3">
-                    <a href="">Sign In</a>
+                    <Link to="/sign-in">Sign In</Link>
                 </li>
                 <li className="mx-3">
-                    <a href="">Sign Up</a>
+                    <Link to="/sign-up">Sign Up</Link>
                 </li>
             </ul>
         </nav>
