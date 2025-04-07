@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getMovie } from '../api/api.js';
 import Card from '../components/Card.jsx';
+import Pagination from '../components/Pagination.jsx';
 
 const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
@@ -28,31 +29,6 @@ const MoviesPage = () => {
         fetchMovie();
     }, [pagination]);
 
-    const generatePagination = () => {
-        const pages = [];
-
-        if (totalPages <= 10) {
-            for (let i = 1; i <= totalPages; i++) {
-                pages.push(i);
-            }
-        } else {
-            pages.push(1);
-            if (pagination > 3) pages.push('...');
-
-            const start = Math.max(2, pagination - 1);
-            const end = Math.min(totalPages - 1, pagination + 1);
-
-            for (let i = start; i <= end; i++) {
-                pages.push(i);
-            }
-
-            if (pagination < totalPages - 2) pages.push('...');
-            pages.push(totalPages);
-        }
-
-        return pages;
-    };
-
     return (
         <div className="px-4 py-6">
             {loading ? (
@@ -64,24 +40,12 @@ const MoviesPage = () => {
                         <Card movies={movies} />
                     </div>
 
-                    {/* Smart Pagination */}
-                    <div className="flex justify-center mt-10 flex-wrap gap-2">
-                        {generatePagination().map((page, index) =>
-                            page === '...' ? (
-                                <span key={index} className="btn btn-sm btn-disabled">
-                                    ...
-                                </span>
-                            ) : (
-                                <button
-                                    key={page}
-                                    onClick={() => setPagination(page)}
-                                    className={`btn btn-sm join-item ${pagination === page ? 'btn-active' : ''}`}
-                                >
-                                    {page}
-                                </button>
-                            )
-                        )}
-                    </div>
+                    {/* Pagination */}
+                    <Pagination
+                        currentPage={pagination}
+                        totalPages={totalPages}
+                        onPageChange={(page) => setPagination(page)}
+                    />
                 </>
             ) : (
                 <div className="text-center mt-10">
