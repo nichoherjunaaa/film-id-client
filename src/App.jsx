@@ -8,6 +8,7 @@ import PublicLayout from "./layout/PublicLayout";
 import CartPage from "./pages/CartPage";
 import SignInPage from "./pages/Auth/SignInPage";
 import SignUpPage from "./pages/Auth/SignUpPage";
+import DetailMovie from "./pages/DetailMovie";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         index : true,
         element : <MoviesPage />,
+      },
+      {
+        path: 'detail/:id',
+        element: <DetailMovie />
       }
     ]
   },
