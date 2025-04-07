@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getMovie = async () => {
+export const getMovie = async (pagination) => {
     const baseUrl = import.meta.env.VITE_TMDB_BASE_URL ?? "";
     const apiKey = import.meta.env.VITE_TMDB_API_KEY ?? "";
     const accessToken = import.meta.env.VITE_TMDB_ACCESS_TOKEN ?? "";
@@ -10,7 +10,7 @@ export const getMovie = async () => {
         return;
     }
     try {
-        const response = await axios.get(`${baseUrl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`, {
+        const response = await axios.get(`${baseUrl}/movie/now_playing?language=en-US&page=${pagination}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 Accept: "application/json",
