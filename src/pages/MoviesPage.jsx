@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getMovie } from '../api/api.js';
 import Card from '../components/Card.jsx';
 import Pagination from '../components/Pagination.jsx';
+import Loading from '../components/Loading.jsx';
 
 const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
@@ -32,20 +33,13 @@ const MoviesPage = () => {
     return (
         <div className="px-4 py-6">
             {loading ? (
-                <div className="text-center">Loading...</div>
+                <Loading />
             ) : movies.length > 0 ? (
                 <>
                     {/* Movie Cards */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                         <Card movies={movies} />
                     </div>
-
-                    {/* Pagination */}
-                    <Pagination
-                        currentPage={pagination}
-                        totalPages={totalPages}
-                        onPageChange={(page) => setPagination(page)}
-                    />
                 </>
             ) : (
                 <div className="text-center mt-10">
@@ -53,6 +47,12 @@ const MoviesPage = () => {
                     <p>Please check your internet connection or try again later.</p>
                 </div>
             )}
+            {/* Pagination */}
+            <Pagination
+                currentPage={pagination}
+                totalPages={totalPages}
+                onPageChange={(page) => setPagination(page)}
+            />
         </div>
     );
 };

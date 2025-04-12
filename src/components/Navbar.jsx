@@ -6,7 +6,7 @@ const Navbar = () => {
         items: ['Home', 'Movies', 'TV Shows', 'About', 'Information']
     }
     return (
-        <nav className="flex justify-between items-center bg-base-100 max-w-7xl p-1 my-6">
+        <nav className="flex justify-between items-center bg-base-100 max-w-7xl p-1 my-6  w-full">
             <ul className="flex items-center">
                 {list.items.map((item, index) => (
                     <li key={index} className="mx-4">
