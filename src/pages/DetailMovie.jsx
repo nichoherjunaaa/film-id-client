@@ -44,7 +44,7 @@ const DetailMovie = () => {
     }
 
     return (
-        <CardDetail image={movieDetail.poster_path} title={movieDetail.title} description={movieDetail.overview}/>
+        <CardDetail image={movieDetail.poster_path} title={movieDetail.title} description={movieDetail.overview} popularity={movieDetail.popularity}/>
     );
 }
 
