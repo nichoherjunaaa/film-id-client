@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 import SignInPage from "./pages/Auth/SignInPage";
 import SignUpPage from "./pages/Auth/SignUpPage";
 import DetailMovie from "./pages/DetailMovie";
+import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +18,23 @@ const router = createBrowserRouter([
     children : [
       {
         index : true,
-        element : <MoviesPage />,
+        element : <HomePage/>,
+      },
+      {
+        path: 'movies',
+        element: <MoviesPage />
       },
       {
         path: 'detail/:id',
         element: <DetailMovie />
+      },
+      {
+        path: 'about',
+        element: <div>About</div>
+      },
+      {
+        path: 'information',
+        element: <div>Information</div>
       }
     ]
   },

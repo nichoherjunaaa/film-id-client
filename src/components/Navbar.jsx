@@ -1,16 +1,23 @@
 import React from 'react'
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
     const list = {
-        items: ['Home', 'Movies', 'TV Shows', 'About', 'Information']
-    }
+        items: [
+            { title: "Home", link: '/' },
+            { title: 'Movies', link: '/movies' },
+            { title: 'About', link: '/about' },
+            { title: 'Information', link: '/information' }
+        ]
+    };
+
     return (
-        <nav className="flex justify-between items-center bg-base-100 max-w-7xl p-1 my-6  w-full">
+        <nav className="flex justify-between items-center bg-base-100 max-w-7xl p-1 my-6 w-full">
             <ul className="flex items-center">
-                {list.items.map((item, index) => (
+                {list.items && list.items.map((item, index) => (
                     <li key={index} className="mx-4">
-                        <a href={`/${item.toLowerCase()}`}>{item}</a>
+                        <Link to={item.link}>{item.title}</Link>
                     </li>
                 ))}
             </ul>

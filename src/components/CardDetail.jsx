@@ -16,7 +16,7 @@ const CardDetail = ({ image, title, description, popularity }) => {
                         <div className="flex flex-col h-fulltext-justify">
                             <h2 className="card-title text-center">{title}</h2>
                             <p className="line-clamp-3">{description}</p>
-                            <p className="">Popularity: {popularity}</p>
+                            <p className="">Views: {popularity}</p>
                         </div>
                         <button className="btn btn-primary w-full">Buy</button>
                     </div>
