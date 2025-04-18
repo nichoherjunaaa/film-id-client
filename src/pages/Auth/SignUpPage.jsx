@@ -1,70 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Image from '../../assets/home-cinema.svg'
 import { Link } from 'react-router-dom';
 
 const SignUpPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePassword = () => setShowPassword(!showPassword);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Tambahkan logic pendaftaran di sini
+  };
+
   return (
-    <div className="h-screen bg-gradient-to-br from-gray-100 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white shadow-lg rounded-lg p-10 overflow-hidden">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-            Create Your Account
-          </h2>
-          <p className="text-sm text-gray-500">
-            Already have an account?{' '}
-            <Link to="/sign-in" className="text-indigo-600 hover:text-indigo-500">
-              Sign in here
-            </Link>
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-white font-['Inter']">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row items-center md:items-stretch border-6 rounded-xl border-primary">
+        {/* Left Side Form */}
+        <div className="hidden md:flex md:w-2/5 justify-center items-center relative overflow-hidden ml-7">
+          <img
+            src={Image}
+            alt="3D illustration"
+            className="max-w-full max-h-full object-contain"
+            width="400"
+            height="400"
+          />
         </div>
-        <form className="mt-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
+        <div className="w-full md:w-3/5 px-8 md:px-20 py-12 md:py-24">
+          <h2 className="text-4xl font-extrabold text-primary mb-8">Create Your Account</h2>
+          <p className="text-lg text-black mb-4">Welcome to our platform!</p>
+
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name" className="block text-base font-medium text-black mb-1">Full Name</label>
               <input
                 id="name"
-                name="name"
                 type="text"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Full Name"
+                placeholder="John Doe"
+                className="w-full rounded-md border border-primary text-base text-black px-4 py-2 focus:outline-none"
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
+
+            <div>
+              <label htmlFor="email" className="block text-base font-medium text-black mb-1">Email</label>
               <input
-                id="email-address"
-                name="email"
+                id="email"
                 type="email"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder="email@example.com"
+                className="w-full rounded-md border border-primary text-base text-black px-4 py-2 focus:outline-none"
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
+
+            <div>
+              <label htmlFor="password" className="block text-base font-medium text-black mb-1">Password</label>
+              <div className="relative">
+                <input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  className="w-full rounded-md border border-primary text-base text-black px-4 py-2 pr-10 focus:outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={togglePassword}
+                  aria-label="Toggle password visibility"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-primary text-base focus:outline-none"
+                >
+                  <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                </button>
+              </div>
             </div>
+
+            <button
+              type="submit"
+              className="w-36 bg-primary text-white text-base font-semibold rounded-full py-3 flex items-center justify-center gap-2 hover:bg-accent transition"
+            >
+              Create Account <i className="fas fa-arrow-right" />
+            </button>
+          </form>
+
+          <p className="text-md text-primary text-center mt-6 mb-4">or continue with</p>
+          <div className="flex justify-center gap-6 mb-6">
+            <button aria-label="Continue with Google" className="w-16 h-10 border border-neutral rounded-full flex items-center justify-center transition cursor-pointer">
+              <img src="https://storage.googleapis.com/a1aa/image/f327ccdb-048b-4b98-876c-888a2b584074.jpg" alt="Google" className="w-5 h-5" />
+            </button>
+            <button aria-label="Continue with GitHub" className="w-16 h-10 border border-neutral rounded-full flex items-center justify-center transition cursor-pointer">
+              <img src="https://storage.googleapis.com/a1aa/image/c81f509a-d213-4ab8-f84f-e1b62185bf1a.jpg" alt="GitHub" className="w-5 h-5" />
+            </button>
+            <button aria-label="Continue with Facebook" className="w-16 h-10 border border-neutral rounded-full flex items-center justify-center transition cursor-pointer">
+              <img src="https://storage.googleapis.com/a1aa/image/cd0e70e8-f800-49d6-4c61-2c62a631c96e.jpg" alt="Facebook" className="w-5 h-5" />
+            </button>
           </div>
-          <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Create Account
-          </button>
-        </form>
+
+          <p className="text-md text-center text-black">
+            Already have an account? <Link to="/sign-in" className="text-primary hover:underline">Sign in here</Link>
+          </p>
+        </div>
+
+        {/* Right Side Image */}
       </div>
     </div>
   );

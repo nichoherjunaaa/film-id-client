@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from '../../assets/home-cinema.svg'
+import { Link } from 'react-router-dom';
 const SignInPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(!showPassword);
@@ -78,7 +79,7 @@ const SignInPage = () => {
                     </div>
 
                     <p className="text-md text-center text-black">
-                        Don't have an account yet? <a href="#" className="text-primary hover:underline">Sign up for free</a>
+                        Don't have an account yet? <Link to="/sign-up" className="text-primary hover:underline">Sign up for free</Link>
                     </p>
                 </div>
 
