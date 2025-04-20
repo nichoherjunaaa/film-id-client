@@ -3,6 +3,8 @@ import { getMovie } from '../api/api.js';
 import Card from '../components/Card.jsx';
 import Pagination from '../components/Pagination.jsx';
 import Loading from '../components/Loading.jsx';
+import { IoMdSearch } from "react-icons/io";
+import { IoFilterSharp } from "react-icons/io5";
 
 const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
@@ -33,9 +35,11 @@ const MoviesPage = () => {
     return (
         <div className="px-4 py-6">
             <div className="flex justify-between items-center mb-10 gap-5">
-                <input type="text" placeholder="Search movies..." className="w-full rounded-md border border-primary text-base text-black px-4 py-2 focus:outline-none" />
-                <button className="btn btn-primary items-center justify-center w-1/6">Filter</button>
-                <button className="btn btn-primary items-center justify-center w-1/6">Search</button>
+                <div className="text-4xl font-bold text-primary">
+                    <IoMdSearch />
+                </div>
+                <input type="text" placeholder="Search movies..." className="w-full rounded-md border border-primary text-base px-4 py-2 focus:outline-none" />
+                <button className="btn btn-primary w-1/12 text-xl"><IoFilterSharp /></button>
             </div>
             {loading ? (
                 <Loading />
