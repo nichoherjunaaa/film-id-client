@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Loading from './../components/Loading';
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
-import MovieSection from './section/MovieSection';
+import MovieSection from './Section/MovieSection';
 
 const HomePage = () => {
     const [topMovies, setTopMovies] = useState([]);

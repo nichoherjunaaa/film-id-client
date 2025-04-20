@@ -32,6 +32,11 @@ const MoviesPage = () => {
 
     return (
         <div className="px-4 py-6">
+            <div className="flex justify-between items-center mb-10 gap-5">
+                <input type="text" placeholder="Search movies..." className="w-full rounded-md border border-primary text-base text-black px-4 py-2 focus:outline-none" />
+                <button className="btn btn-primary items-center justify-center w-1/6">Filter</button>
+                <button className="btn btn-primary items-center justify-center w-1/6">Search</button>
+            </div>
             {loading ? (
                 <Loading />
             ) : movies.length > 0 ? (
