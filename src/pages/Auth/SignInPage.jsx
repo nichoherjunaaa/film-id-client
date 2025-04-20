@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import Image from '../../assets/home-cinema.svg'
 import { Link } from 'react-router-dom';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
 const SignInPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(!showPassword);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Tambahkan logic autentikasi di sini
+        console.log('Form submitted');
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
     };
 
     return (
@@ -50,9 +55,9 @@ const SignInPage = () => {
                                     type="button"
                                     onClick={togglePassword}
                                     aria-label="Toggle password visibility"
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 text-primary text-base focus:outline-none"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 text-primary focus:outline-none mr-2 text-xl"
                                 >
-                                    <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                                    {showPassword ? (<FaEye />) : (<FaEyeSlash />)}
                                 </button>
                             </div>
                         </div>
